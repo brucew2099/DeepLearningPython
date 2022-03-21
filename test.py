@@ -138,11 +138,11 @@ def testTheano():
     f = function([], T.exp(x))
     print(f.maker.fgraph.toposort())
     t0 = time.time()
-    for i in range(iters):
+    for _ in range(iters):
         r = f()
     t1 = time.time()
     print("Looping %d times took %f seconds" % (iters, t1 - t0))
-    print("Result is %s" % (r,))
+    print(f"Result is {r}")
     if numpy.any([isinstance(x.op, T.Elemwise) for x in f.maker.fgraph.toposort()]):
         print('Used the cpu')
     else:
